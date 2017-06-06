@@ -9,11 +9,20 @@ const actions = {
 const models = {
   household: {
     name: 'Household',
-    endpoint: 'household'
+    endpoint: 'household',
+    useCustomRoutes: true
   },
   chore: {
     name: 'Chore',
     endpoint: 'chore'
+  },
+  leaderboard: {
+    name: 'Leaderboard',
+    endpoint: 'leaderboard'
+  },
+  prize: {
+    name: 'Prize',
+    endpoint: 'prize'
   },
   user: {
     name: 'User',
@@ -22,7 +31,6 @@ const models = {
     useCustomRoutes: true
   }
 }
-
 
 export  {
   actions,
