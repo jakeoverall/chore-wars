@@ -6,22 +6,22 @@ const actions = {
   findAll: 'Find All'
 }
 
-// const models = {
-//   board: {
-//     name: 'Board',
-//     endpoint: 'boards'
-//   },
-//   list: {
-//     name: 'List',
-//     endpoint: 'lists'
-//   },
-//   user: {
-//     name: 'User',
-//     endpoint: 'users',
-//     preventDefaultApi: true,
-//     useCustomRoutes: true
-//   }
-// }
+const models = {
+  household: {
+    name: 'Household',
+    endpoint: 'household'
+  },
+  chore: {
+    name: 'Chore',
+    endpoint: 'chore'
+  },
+  user: {
+    name: 'User',
+    endpoint: 'users',
+    preventDefaultApi: true,
+    useCustomRoutes: true
+  }
+}
 
 
 export  {
