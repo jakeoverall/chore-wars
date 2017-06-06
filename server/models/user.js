@@ -1,4 +1,5 @@
 let mongoose = require('mongoose')
+import { models } from '../config/constants'
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
 let bcrypt = require('bcryptjs')

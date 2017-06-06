@@ -2,6 +2,7 @@ let router = require('express').Router()
 let Users = require('../models/user')
 
 router.post('/register', (req, res) => {
+  debugger
   Users.create(req.body)
     .then((user) => {
       req.session.uid = user._id

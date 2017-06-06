@@ -14,7 +14,7 @@ var schema = new mongoose.Schema({
 	chores: { type: ObjectId, ref: models.chore.name, required: true},
 	members: { type: ObjectId, ref: models.user.name, required: true},	
 	prize: { type: ObjectId, ref: models.prize.name},
-	leaderboard: {type: ObjectId, ref: model.leaderboard.name }
+	leaderboard: {type: ObjectId, ref: models.leaderboard.creatorId }
 });
 
 module.exports = mongoose.model(models.household.name, schema);

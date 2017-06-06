@@ -3,6 +3,7 @@ let mongoose = require('mongoose')
 let ObjectId = mongoose.Schema.ObjectId
 
 var schema = new mongoose.Schema({
+  name: { type: String, default: "New Board"},
   totalPoints: { type: Number, default: 0 },
 	winner: { type: ObjectId, ref: models.user.name },
   created: { type: Number, default: Date.now() },
@@ -12,4 +13,4 @@ var schema = new mongoose.Schema({
 	members: { type: ObjectId, ref: models.user.name, required: true}
 });
 
-module.exports = mongoose.model(models.leaderboard.totalPoints, schema);
+module.exports = mongoose.model(models.leaderboard.name, schema);
