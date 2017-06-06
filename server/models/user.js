@@ -10,6 +10,7 @@ let schema = new Schema({
   password: { type: String, required: true },
 	points: { type: Number },
 	isWinner: { type: Boolean, default: false },
+  completedChores: { type: Array },
   created: { type: Number, required: true, default: Date.now() },
 	householdId: { type: ObjectId, ref: models.household.name }
 })
