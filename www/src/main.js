@@ -3,6 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import io from 'socket.io-client'
+import store from './store'
+
+
+let socket = io('https://localhost:8080')
+
+socket.on('CONNECTED', function (data) {
+  console.log(data)
+  socket.emit('update', { data: 'blarg', boardId: '3289748320' })
+})
 
 Vue.config.productionTip = false
 
