@@ -6,12 +6,12 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 let api = axios.create({
-  baseURL: 'http://localhost:8080/api/',
+  baseURL: 'http://localhost:3000/api/',
   timeout: 2000,
   withCredentials: true
 })
 let auth = axios.create({
-  baseURL: 'http://localhost:8080/',
+  baseURL: 'http://localhost:3000/',
   timeout: 2000,
   withCredentials: true
 })
@@ -31,6 +31,7 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, user) {
       state.user = user
+      router.push('/household')
     }
   },
   actions: {
@@ -38,6 +39,7 @@ export default new Vuex.Store({
       auth.post('login', user)
       .then( res => {
         commit('setUser', res.data.data)
+
         if (state.user === null) {
             router.push('/')
           }

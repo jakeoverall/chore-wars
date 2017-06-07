@@ -21,7 +21,6 @@ router.post('/register', (req, res) => {
 
 
 router.post('/login', (req, res) => {
-  debugger
   Users.findOne({ email: req.body.email })
     .then(user => {
       user.validatePassword(req.body.password)
