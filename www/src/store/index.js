@@ -17,7 +17,7 @@ let auth = axios.create({
 })
 
 let state = {
-  errpr: {}
+  error: {}
 
 }
 
