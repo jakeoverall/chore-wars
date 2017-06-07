@@ -17,6 +17,7 @@ let auth = axios.create({
 })
 
 let state = {
+  user: {},
   error: {}
 
 }
@@ -28,10 +29,22 @@ let handleError = (state, err) =>{
 export default new Vuex.Store({
   state,
   mutations: {
-
+    setUser(state, user) {
+      state.user = user
+    }
   },
   actions: {
-
-  },
+    login({commit, dispatch}, user) {
+      auth.post('login', user)
+      .then( res => {
+        commit('setUser', res.data.data)
+        if (state.user === null) {
+            router.push('/')
+          }
+      }) .catch(err => {
+          router.push('/login')
+        })
+    }
+  }
 
 })
