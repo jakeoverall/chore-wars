@@ -22,8 +22,8 @@ let state = {
 
 }
 
-let handleError = (state, err) =>{
-  state.err = err
+let handleError = (err) =>{
+  state.error = err
 }
 
 export default new Vuex.Store({
@@ -40,19 +40,19 @@ export default new Vuex.Store({
       state.user = user || {}
       // router.push('household')
     },
+    setLogin(state, user) {
+      state.user = user
+    },
   },
   actions: {
-    login({commit, dispatch}, user) {
+    login({ commit, dispatch }, user) {
       auth.post('login', user)
-      .then( res => {
-        commit('setUser', res.data.data)
-
-        if (state.user === null) {
-            router.push('/')
-          }
-      }) .catch(err => {
-          router.push('/login')
+        .then(res => {
+          debugger
+          console.log(res)
+          commit('setLogin', res.data.data)
         })
+        .catch(handleError)
     },
     getAuth({ commit, dispatch }) {
       auth('authenticate')

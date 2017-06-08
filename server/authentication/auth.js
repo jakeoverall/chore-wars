@@ -23,9 +23,10 @@ router.post('/login', (req, res) => {
   Users.findOne({ email: req.body.email })
     .then(user => {
       if(!user){
-        return res.status(401).send({ error: 'Invalid Email or Password' })
-      }
-        user.validatePassword(req.body.password)
+        res.sendStatus(401)({error: 'Invalid Email or Password'})
+      }else{
+
+      user.validatePassword(req.body.password)
         .then(valid => {
           if(!valid){
             return res.status(401).send({error: 'Invalid Email or Password'})
@@ -40,16 +41,18 @@ router.post('/login', (req, res) => {
           })
         })
         .catch(err => {
-          res.status(401).send({ error: err || 'Invalid Email or Password' })
+          res.send({ error: err || 'Invalid Email or Password' })
         })
+      }
     })
     .catch(err => {
-      res.status(401).send({
+      res.send({
         error: err,
         message: 'Invalid Email or Password'
       })
     })
 })
+
 
 router.delete('/logout', (req, res) => {
   req.session.destroy()
