@@ -23,7 +23,7 @@ let state = {
 
 }
 
-let handleError = (err) =>{
+let handleError = (err) => {
   state.error = err
 }
 
@@ -54,9 +54,9 @@ export default new Vuex.Store({
   actions: {
     login({ commit, dispatch }, user) {
       auth.post('login', user)
-      .then( res => {
-        commit('setUser', res.data.data)
-      }) .catch(err => {
+        .then(res => {
+          commit('setUser', res.data.data)
+        }).catch(err => {
           router.push('/login')
         })
         .catch(handleError)
@@ -70,7 +70,7 @@ export default new Vuex.Store({
         }))
 
     },
-     clearError({ commit, dispatch }) {
+    clearError({ commit, dispatch }) {
       commit('setError')
     },
     getHousehold({ commit, dispatch }, id) {
