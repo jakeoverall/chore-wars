@@ -18,7 +18,8 @@ let auth = axios.create({
 
 let state = {
   user: {},
-  error: {}
+  error: {},
+  household: {}
 
 }
 
@@ -40,17 +41,23 @@ export default new Vuex.Store({
       state.user = user || {}
       // router.push('household')
     },
+
     setLogin(state, user) {
       state.user = user
+    },
+
+    setHousehold(state, household) {
+      state.household = household
+
     },
   },
   actions: {
     login({ commit, dispatch }, user) {
       auth.post('login', user)
-        .then(res => {
-          debugger
-          console.log(res)
-          commit('setLogin', res.data.data)
+      .then( res => {
+        commit('setUser', res.data.data)
+      }) .catch(err => {
+          router.push('/login')
         })
         .catch(handleError)
     },
@@ -65,7 +72,35 @@ export default new Vuex.Store({
     },
      clearError({ commit, dispatch }) {
       commit('setError')
-    }
+    },
+    getHousehold({ commit, dispatch }, id) {
+      api('household/' + id)
+        .then(res => {
+          commit('setHousehold', res.data.data)
+        })
+        .catch(handleError)
+    },
+    getPrize({ commit, dispatch }, prize) {
+      api('household/' + prize.householdId + "/prize/" + prize._id)
+        .then(res => {
+          commit('setPrize', res.data.data)
+        })
+        .catch(handleError)
+    },
+    createHousehold({ commit, dispatch }, household) {
+      api.post('household/', household)
+        .then(res => {
+          dispatch('getHousehold')
+        })
+        .catch(handleError)
+    },
+    createPrize({ commit, dispatch }, prize) {
+      api.post('prize/', prize)
+        .then(res => {
+          dispatch('getPrize')
+        })
+        .catch(handleError)
+    },
   }
 
 })

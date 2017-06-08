@@ -5,7 +5,7 @@ let Prize = require('../models/prize')
 
 export default {
   getLeaderboardByHouseholdId: {
-    path: '/household/:householdId/leaderboard',
+    path: '/households/:householdId/leaderboard',
     reqType: 'get',
     method(req, res, next) {
       let action = 'Return leaderboard by household id'
@@ -21,8 +21,25 @@ export default {
         })
     }
   },
+  getPrizeByHouseholdId: {
+    path: '/households/:householdId/prize/:prizeId',
+    reqType: 'get',
+    method(req, res, next) {
+      let action = 'Return prize by household id'
+      Household.findById(req.params.householdId)
+        .then(household => {
+          Prize.find({ householdId: req.params.householdId })
+            .then(prize => {
+              household.prize = prize
+              res.send(handleResponse(action, household.prize))
+            })
+        }).catch(error => {
+          return next(handleResponse(action, null, error))
+        })
+    }
+  },
   getChoresByHousehold: {
-    path: '/household/:householdId/chores',
+    path: '/households/:householdId/chores',
     reqType: 'get',
     method(req, res, next) {
       let action = 'Return chores associated with this household'
@@ -39,7 +56,7 @@ export default {
     }
   },
     getWinnerByLeaderboard: {
-        path: '/household/:householdId/leaderboard/:leaderboardId/winner',
+        path: '/households/:householdId/leaderboard/:leaderboardId/winner',
         reqType: 'get',
         method(req, res, next) {
             let action = 'Return winner in the household'
