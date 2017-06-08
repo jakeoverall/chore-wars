@@ -110,7 +110,7 @@ export default new Vuex.Store({
         .catch(handleError)
     },
     createHousehold({ commit, dispatch }, household) {
-      api.post('households/', household)
+      api.post('household', household)
         .then(res => {
           dispatch('getHouseholds')
         })

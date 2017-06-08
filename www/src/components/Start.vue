@@ -15,7 +15,7 @@
             <div class='container-fluid'>
               <div class='row'>
                 <div class="col-sm-3" v-for="household in households">
-                   {{household.name}}
+                   <h1> {{household.name}}</h1>
                 </div>
               </div>
             </div>
