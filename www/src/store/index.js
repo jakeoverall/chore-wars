@@ -25,8 +25,8 @@ let state = {
 
 }
 
-let handleError = (state, err) =>{
-  state.err = err
+let handleError = (err) => {
+  state.error = err
 }
 
 export default new Vuex.Store({
@@ -43,8 +43,14 @@ export default new Vuex.Store({
       state.user = user || {}
       // router.push('household')
     },
+
+    setLogin(state, user) {
+      state.user = user
+    },
+
     setHousehold(state, household) {
       state.household = household
+
     },
     setHouseholds(state, households) {
       state.households = households
@@ -54,8 +60,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    login({commit, dispatch}, user) {
+    login({ commit, dispatch }, user) {
       auth.post('login', user)
+<<<<<<< HEAD
       .then( res => {
         commit('setUser', res.data.data)
 
@@ -65,8 +72,14 @@ export default new Vuex.Store({
             router.push('/households')
           }
       }) .catch(err => {
+=======
+        .then(res => {
+          commit('setUser', res.data.data)
+        }).catch(err => {
+>>>>>>> e67b10a36b93780f2464171e3ed737d4d0cf4a07
           router.push('/login')
         })
+        .catch(handleError)
     },
     getAuth({ commit, dispatch }) {
       auth('authenticate')
@@ -77,7 +90,7 @@ export default new Vuex.Store({
         }))
 
     },
-     clearError({ commit, dispatch }) {
+    clearError({ commit, dispatch }) {
       commit('setError')
     },
     getHouseholds({ commit, dispatch }) {

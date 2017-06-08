@@ -2,7 +2,6 @@ let router = require('express').Router()
 let Users = require('../models/user')
 
 router.post('/register', (req, res) => {
-  debugger
   Users.create(req.body)
     .then((user) => {
       req.session.uid = user._id
@@ -23,12 +22,15 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
   Users.findOne({ email: req.body.email })
     .then(user => {
-      if(user == null){
-        debugger
-            return res.send({error: 'Invalid Email or Password'})
-          }
-        user.validatePassword(req.body.password)
+      if(!user){
+        res.sendStatus(401)({error: 'Invalid Email or Password'})
+      }else{
+
+      user.validatePassword(req.body.password)
         .then(valid => {
+          if(!valid){
+            return res.status(401).send({error: 'Invalid Email or Password'})
+          }
           req.session.uid = user._id;
           req.session.save()
           user.password = null
@@ -41,6 +43,7 @@ router.post('/login', (req, res) => {
         .catch(err => {
           res.send({ error: err || 'Invalid Email or Password' })
         })
+      }
     })
     .catch(err => {
       res.send({
@@ -49,6 +52,7 @@ router.post('/login', (req, res) => {
       })
     })
 })
+
 
 router.delete('/logout', (req, res) => {
   req.session.destroy()
@@ -64,7 +68,7 @@ router.get('/authenticate', (req,res) => {
       data: user
     })
   }).catch(err=>{
-    return res.send({
+    return res.status(401).send({
       error:err
     })
   })
