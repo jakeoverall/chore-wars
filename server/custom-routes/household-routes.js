@@ -22,7 +22,7 @@ export default {
     }
   },
   getPrizeByHouseholdId: {
-    path: '/household/:householdId/prize',
+    path: '/household/:householdId/prize/:prizeId',
     reqType: 'get',
     method(req, res, next) {
       let action = 'Return prize by household id'
