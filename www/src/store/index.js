@@ -77,10 +77,24 @@ export default new Vuex.Store({
         })
         .catch(handleError)
     },
+    getPrize({ commit, dispatch }, prize) {
+      api('household/' + prize.householdId + "/prize/" + prize._id)
+        .then(res => {
+          commit('setPrize', res.data.data)
+        })
+        .catch(handleError)
+    },
     createHousehold({ commit, dispatch }, household) {
       api.post('household/', household)
         .then(res => {
           dispatch('getHousehold')
+        })
+        .catch(handleError)
+    },
+    createPrize({ commit, dispatch }, prize) {
+      api.post('prize/', prize)
+        .then(res => {
+          dispatch('getPrize')
         })
         .catch(handleError)
     },
