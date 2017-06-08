@@ -19,7 +19,9 @@ let auth = axios.create({
 let state = {
   user: {},
   error: {},
-  household: {}
+  households: [],
+  household: {},
+  prize: {}
 
 }
 
@@ -32,7 +34,7 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, user) {
       state.user = user
-      router.push('/household')
+      router.push('/households')
     },
     setError(state) {
       state.error = {}
@@ -50,13 +52,31 @@ export default new Vuex.Store({
       state.household = household
 
     },
+    setHouseholds(state, households) {
+      state.households = households
+    },
+    setPrize(state, prize) {
+      state.prize = prize
+    },
   },
   actions: {
     login({ commit, dispatch }, user) {
       auth.post('login', user)
+<<<<<<< HEAD
+      .then( res => {
+        commit('setUser', res.data.data)
+
+        if (state.user === null) {
+            router.push('/')
+          }else{
+            router.push('/households')
+          }
+      }) .catch(err => {
+=======
         .then(res => {
           commit('setUser', res.data.data)
         }).catch(err => {
+>>>>>>> e67b10a36b93780f2464171e3ed737d4d0cf4a07
           router.push('/login')
         })
         .catch(handleError)
@@ -73,8 +93,15 @@ export default new Vuex.Store({
     clearError({ commit, dispatch }) {
       commit('setError')
     },
+    getHouseholds({ commit, dispatch }) {
+      api('households/')
+        .then(res => {
+          commit('setHouseholds', res.data.data)
+        })
+        .catch(handleError)
+    },
     getHousehold({ commit, dispatch }, id) {
-      api('household/' + id)
+      api('households/' + id)
         .then(res => {
           commit('setHousehold', res.data.data)
         })
@@ -88,9 +115,9 @@ export default new Vuex.Store({
         .catch(handleError)
     },
     createHousehold({ commit, dispatch }, household) {
-      api.post('household/', household)
+      api.post('households/', household)
         .then(res => {
-          dispatch('getHousehold')
+          dispatch('getHouseholds')
         })
         .catch(handleError)
     },

@@ -2,7 +2,7 @@
   <div class="login">
     <div class="container">
       <div class="login-heading">
-        <h1>Log in to Frello</h1>
+        <h1>Log in to Chore Wars</h1>
       </div>
       <form @submit.prevent="login">
         <div class="form-group">
