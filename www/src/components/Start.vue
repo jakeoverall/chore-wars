@@ -55,17 +55,19 @@
         this.$store.dispatch("createHousehold", {name: this.name, creatorId: this.creatorId})
       },
       householdFormToggle() {
+        debugger
         this.newHousehold = true;
         this.addHouseholdButton = false;
       },
       householdFormToggleBack() {
+        debugger
         this.newHousehold = false;
-        this.addhouseholdButton = true;
+        this.addHouseholdButton = true;
       }
     },
     components: {}
   }
-  
+
 
 </script>
 

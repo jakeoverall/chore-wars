@@ -88,7 +88,8 @@ export default new Vuex.Store({
       commit('setError')
     },
     getHouseholds({ commit, dispatch }) {
-      api('households/')
+      debugger
+      api('households')
         .then(res => {
           commit('setHouseholds', res.data.data)
         })
