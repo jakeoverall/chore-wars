@@ -62,7 +62,6 @@ export default new Vuex.Store({
   actions: {
     login({ commit, dispatch }, user) {
       auth.post('login', user)
-<<<<<<< HEAD
       .then( res => {
         commit('setUser', res.data.data)
 
@@ -72,11 +71,6 @@ export default new Vuex.Store({
             router.push('/households')
           }
       }) .catch(err => {
-=======
-        .then(res => {
-          commit('setUser', res.data.data)
-        }).catch(err => {
->>>>>>> e67b10a36b93780f2464171e3ed737d4d0cf4a07
           router.push('/login')
         })
         .catch(handleError)
