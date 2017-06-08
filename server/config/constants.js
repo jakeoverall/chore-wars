@@ -9,7 +9,7 @@ const actions = {
 const models = {
   household: {
     name: 'Household',
-    endpoint: 'household',
+    endpoint: 'households',
     useCustomRoutes: true
   },
   chore: {
