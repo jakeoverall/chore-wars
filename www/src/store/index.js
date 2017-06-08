@@ -32,7 +32,14 @@ export default new Vuex.Store({
     setUser(state, user) {
       state.user = user
       router.push('/household')
-    }
+    },
+    setError(state) {
+      state.error = {}
+    },
+    setAuth(state, user) {
+      state.user = user || {}
+      // router.push('household')
+    },
   },
   actions: {
     login({commit, dispatch}, user) {
@@ -44,8 +51,21 @@ export default new Vuex.Store({
             router.push('/')
           }
       }) .catch(err => {
+        debugger
           router.push('/login')
         })
+    },
+    getAuth({ commit, dispatch }) {
+      auth('authenticate')
+        .then(res => {
+          commit('setAuth', res.data.data)
+
+        }).catch((err => {
+        }))
+
+    },
+     clearError({ commit, dispatch }) {
+      commit('setError')
     }
   }
 
