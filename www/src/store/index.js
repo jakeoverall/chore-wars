@@ -21,6 +21,7 @@ let state = {
   error: {},
   households: [],
   household: {},
+  chores: {},
   prize: {}
 
 }
@@ -58,6 +59,9 @@ export default new Vuex.Store({
     setPrize(state, prize) {
       state.prize = prize
     },
+    setChores(state, chores){
+      state.chores = chores
+    }
   },
   actions: {
     login({ commit, dispatch }, user) {
@@ -109,6 +113,14 @@ export default new Vuex.Store({
         })
         .catch(handleError)
     },
+    getChores({commit, dispatch}){
+      api('chores')
+        .then(res => {
+          commit('setChores', res.data.data)
+        })
+        .catch(handleError)
+    },
+
     createHousehold({ commit, dispatch }, household) {
       api.post('household', household)
         .then(res => {
@@ -122,7 +134,7 @@ export default new Vuex.Store({
           dispatch('getPrize')
         })
         .catch(handleError)
-    },
+    }
   }
 
 })
