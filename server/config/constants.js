@@ -14,7 +14,7 @@ const models = {
   },
   chore: {
     name: 'Chore',
-    endpoint: 'chore'
+    endpoint: 'chores'
   },
   leaderboard: {
     name: 'Leaderboard',
