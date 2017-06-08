@@ -18,7 +18,8 @@ let auth = axios.create({
 
 let state = {
   user: {},
-  error: {}
+  error: {},
+  household: {}
 
 }
 
@@ -40,6 +41,9 @@ export default new Vuex.Store({
       state.user = user || {}
       // router.push('household')
     },
+    setHousehold(state, household) {
+      state.household = household
+    },
   },
   actions: {
     login({commit, dispatch}, user) {
@@ -51,7 +55,6 @@ export default new Vuex.Store({
             router.push('/')
           }
       }) .catch(err => {
-        debugger
           router.push('/login')
         })
     },
@@ -66,7 +69,21 @@ export default new Vuex.Store({
     },
      clearError({ commit, dispatch }) {
       commit('setError')
-    }
+    },
+    getHousehold({ commit, dispatch }, id) {
+      api('household/' + id)
+        .then(res => {
+          commit('setHousehold', res.data.data)
+        })
+        .catch(handleError)
+    },
+    createHousehold({ commit, dispatch }, household) {
+      api.post('household/', household)
+        .then(res => {
+          dispatch('getHousehold')
+        })
+        .catch(handleError)
+    },
   }
 
 })
