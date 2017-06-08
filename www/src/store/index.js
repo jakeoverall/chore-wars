@@ -51,7 +51,6 @@ export default new Vuex.Store({
             router.push('/')
           }
       }) .catch(err => {
-        debugger
           router.push('/login')
         })
     },
