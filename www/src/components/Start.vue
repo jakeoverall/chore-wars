@@ -15,7 +15,8 @@
             <div class='container-fluid'>
               <div class='row'>
                 <div class="col-sm-3" v-for="household in households">
-                    <router-link :to="'/households/'+household._id">{{household.name}}</router-link> <button type="button" class='btn btn-xs btn-default' @click="removeHousehold(household)"><span class="glyphicon glyphicon-trash"></span></button></div>
+                   {{household.name}}
+                </div>
               </div>
             </div>
           </div>
@@ -42,6 +43,7 @@
     },
     computed: {
       households() {
+        debugger
         return this.$store.state.households
       },
       user(){
