@@ -21,6 +21,23 @@ export default {
         })
     }
   },
+  getPrizeByHouseholdId: {
+    path: '/household/:householdId/prize',
+    reqType: 'get',
+    method(req, res, next) {
+      let action = 'Return prize by household id'
+      Household.findById(req.params.householdId)
+        .then(household => {
+          Prize.find({ householdId: req.params.householdId })
+            .then(prize => {
+              household.prize = prize
+              res.send(handleResponse(action, household.prize))
+            })
+        }).catch(error => {
+          return next(handleResponse(action, null, error))
+        })
+    }
+  },
   getChoresByHousehold: {
     path: '/household/:householdId/chores',
     reqType: 'get',
