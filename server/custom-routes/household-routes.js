@@ -55,6 +55,22 @@ export default {
         })
     }
   },
+  addChoresByHousehold: {
+    path: '/households/:householdId/chores',
+    reqType: 'post',
+    method(req, res, next){
+      let action = 'Adds the game chore list to the household with points'
+      Household.findById(req.params.householdId)
+        .then(household =>{
+          debugger
+          household._doc.choresList.push(req.body)
+          res.send(handleResponse(action, req.body))
+        })
+        .catch(error => {
+          return next(handleResponse(action, null, error))
+        })
+    }
+  },
     getWinnerByLeaderboard: {
         path: '/households/:householdId/leaderboard/:leaderboardId/winner',
         reqType: 'get',
@@ -74,7 +90,7 @@ export default {
                 })
         }
     }
-    
+
     // getTasksAndAllComments: {
     //     path: '/boards/:boardId/lists/:listId/tasks/comments',
     //     reqType: 'get',

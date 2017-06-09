@@ -136,7 +136,11 @@ export default new Vuex.Store({
         .catch(handleError)
     },
     addChoresToHousehold({commit, dispatch}, chores){
-
+      api.post('household/' + 'chores')
+        .then(res => {
+          dispatch()
+        })
+        .catch(handleError)
     }
   }
 
