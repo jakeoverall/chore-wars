@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="homepage">
     <h1>{{ msg }}</h1>
     <router-link to="/login">Login</router-link></button>
   </div>
@@ -9,10 +9,10 @@
 import Login from './Login'
 
 export default {
-  name: 'hello',
+  name: 'homepage',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to ChoreWars'
     }
   }
 }

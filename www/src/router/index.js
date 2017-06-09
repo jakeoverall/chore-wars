@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import Homepage from '@/components/Homepage'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Start from '@/components/Start'
@@ -13,8 +13,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'Homepage',
+      component: Homepage
     },
     {
       path: '/login',
@@ -40,7 +40,7 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/404'
+      redirect: '/'
     }
   ]
 })
