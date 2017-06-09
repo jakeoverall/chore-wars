@@ -12,7 +12,8 @@ var schema = new mongoose.Schema({
   creatorId: {type: ObjectId, ref: models.user.name, required: true},
   // Relations
 	chores: { type: ObjectId, ref: models.chore.name},
-	members: { type: ObjectId, ref: models.user.name},	
+	choresList: {type: Array},
+	members: { type: ObjectId, ref: models.user.name},
 	prize: { type: ObjectId, ref: models.prize.name},
 	leaderboard: {type: ObjectId, ref: models.leaderboard.creatorId }
 });
