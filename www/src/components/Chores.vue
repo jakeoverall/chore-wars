@@ -3,12 +3,12 @@
     <form @submit.prevent="addChoresToHousehold(choresList)">
       <div class="loop" v-for="chore in chores">
         <label class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" :value="chore.name" v-model="checkedChores"/>
+          <input type="checkbox" class="custom-control-input" :value="chore" v-model="checkedChores"/>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">Chore: {{chore.name}} - </span>
         </label>
         <span>Value</span>
-        <input type="number" :value= "chore.points" :placeholder="chore.points" v-model.number="checkedChores"/>
+        <input v-model="checkedChores[chore.points]" type="number" :value= "chore.points" :placeholder="chore.points"/>
       </div>
       <button type="submit" class="btn btn-success">Submit Chore List</button>
     </form>
