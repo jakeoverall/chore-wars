@@ -42,7 +42,7 @@
     },
     methods: {
       addChoresToHousehold(chores){
-        debugger
+        this.$store.dispatch('addChoresToHousehold', chores)
 
       }
     },

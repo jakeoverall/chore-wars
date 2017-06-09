@@ -134,6 +134,9 @@ export default new Vuex.Store({
           dispatch('getPrize')
         })
         .catch(handleError)
+    },
+    addChoresToHousehold({commit, dispatch}, chores){
+
     }
   }
 
